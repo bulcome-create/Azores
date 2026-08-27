@@ -1,0 +1,25 @@
+CUADERNO AZORES → APP EN EL IPHONE (5 minutos)
+
+1) SUBIR A UNA URL (elige una):
+   a. GitHub Pages: crea un repo, sube TODOS los archivos de este zip
+      (index.html en la raíz) → Settings → Pages → Deploy from branch → main.
+      Tu URL: https://TUUSUARIO.github.io/NOMBREREPO/
+   b. Netlify Drop (drop.netlify.com): arrastra la carpeta y listo.
+
+2) EN EL IPHONE: abre esa URL en Safari (no en Chrome).
+
+3) Botón Compartir → "Añadir a pantalla de inicio".
+   Aparece el icono "Azores" con la baliza. Al abrirlo: pantalla
+   completa, sin barra de Safari, como una app.
+
+4) PRIMER USO CON INTERNET: abre la app y desplázate por los 8 días
+   hasta el final. El service worker va guardando página y fotos en
+   caché; a partir de ahí funciona SIN COBERTURA en mitad de la isla.
+   (Los enlaces a Google Maps y webcams sí necesitan red, claro.)
+
+Notas:
+- node --check pasado y probado en navegador simulado; si cambias el
+  HTML, súbelo con el mismo nombre y la app se actualiza sola al
+  abrirla con red (cache-first + refresco en segundo plano).
+- El botón "Guardar versión offline" sigue dentro por si prefieres
+  el archivo suelto con fotos incrustadas en vez de la app.

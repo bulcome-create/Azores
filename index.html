@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#16282C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Azores">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>São Miguel · Cuaderno de ruta · 1–8 sep 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bruma:#EFF3F1;      /* fondo: niebla clara */
+  --papel:#FFFFFF;
+  --basalto:#16282C;    /* tinta volcánica */
+  --tinta2:#4C6268;
+  --linea:#D6E0DD;
+  --azul:#20708C;       /* Lagoa Azul */
+  --verde:#4E7C45;      /* Lagoa Verde */
+  --hortensia:#6F78BE;  /* hortensias de cuneta */
+  --termal:#B65C22;     /* agua ferruginosa */
+  --blaze-r:#D7263D;    /* baliza PR roja */
+  --blaze-y:#F2B705;    /* baliza PR amarilla */
+  --radius:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;background:var(--bruma);color:var(--basalto);
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:16px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--azul)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--hortensia);outline-offset:2px;border-radius:6px}
+.mono{font-family:"IBM Plex Mono",monospace}
+
+/* ---------- HERO ---------- */
+header.hero{background:#102226;color:#EAF2F0;padding:34px 20px 26px}
+.hero-inner{max-width:980px;margin:0 auto}
+.hero .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.18em;color:#9FBFC7;text-transform:uppercase}
+.hero h1{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(38px,7vw,64px);margin:6px 0 2px;line-height:1.02}
+.hero h1 .isla{color:#BFE3D8}
+.hero .sub{font-family:"IBM Plex Mono",monospace;font-size:13.5px;color:#C6D8D5;margin-top:6px}
+.twin{height:8px;border-radius:99px;margin:18px 0 14px;max-width:420px;
+  background:linear-gradient(90deg,var(--azul) 0 55%,var(--verde) 55% 100%)}
+.ritual{display:flex;flex-wrap:wrap;gap:8px;font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:#DDE9E6}
+.ritual span{background:#1C3339;border:1px solid #2C4850;border-radius:99px;padding:5px 11px}
+.ritual .arrow{border:0;background:none;padding:5px 0;color:#6E8B92}
+
+/* ---------- NAV ---------- */
+nav.days{position:sticky;top:0;z-index:50;background:rgba(239,243,241,.92);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--linea);overflow-x:auto;white-space:nowrap;padding:8px 12px;scrollbar-width:none}
+nav.days::-webkit-scrollbar{display:none}
+nav.days a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--tinta2);
+  font-family:"IBM Plex Mono",monospace;font-size:12.5px;font-weight:600;
+  padding:7px 11px;border-radius:99px;border:1px solid transparent;margin-right:4px}
+nav.days a .b{width:9px;height:14px;border-radius:2px;background:linear-gradient(180deg,var(--blaze-r) 50%,var(--blaze-y) 50%);flex:0 0 auto}
+nav.days a.on,nav.days a:hover{background:#fff;border-color:var(--linea);color:var(--basalto)}
+
+/* ---------- LAYOUT ---------- */
+main{max-width:980px;margin:0 auto;padding:10px 16px 60px}
+section.bloque{margin-top:34px;scroll-margin-top:64px}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.blaze{width:14px;height:22px;border-radius:3px;flex:0 0 auto;align-self:center;
+  background:linear-gradient(180deg,var(--blaze-r) 50%,var(--blaze-y) 50%);box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.sec-head h2{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(24px,4.4vw,34px);margin:0}
+.sec-head .fecha{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--tinta2)}
+.tema{color:var(--tinta2);margin:6px 0 0;max-width:70ch}
+.heroimg{width:100%;max-height:230px;object-fit:cover;border-radius:var(--radius);margin-top:14px;display:none}
+.heroimg.ok{display:block}
+.credit{font-size:11px;color:#8AA0A5;margin-top:4px;display:none}
+.credit.ok{display:block}
+
+/* ---------- DECISIÓN DE NIEBLA ---------- */
+.decide{margin-top:16px;background:#fff;border:1px dashed #B9C9C5;border-left:6px solid;border-image:linear-gradient(180deg,var(--blaze-r) 50%,var(--blaze-y) 50%) 1;
+  border-radius:0 var(--radius) var(--radius) 0;padding:12px 14px}
+.decide .tit{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta2)}
+.decide .cams{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.camchip{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:600;
+  background:#123039;color:#DFF0EC;border-radius:99px;padding:6px 12px}
+.camchip:hover{background:#1B4450}
+.decide .planb{font-size:14px;color:var(--basalto);margin-top:6px}
+.decide .planb b{color:var(--termal)}
+
+/* ---------- RUTA DEL DÍA ---------- */
+.rutabar{margin-top:14px;background:#fff;border:1px solid var(--linea);border-radius:var(--radius);padding:12px 14px}
+.rutabar .lbl{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta2)}
+.stops{display:flex;flex-wrap:wrap;align-items:center;gap:4px 0;margin-top:8px;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
+.stops .st{background:var(--bruma);border-radius:8px;padding:4px 8px;margin:2px 0}
+.stops .ln{width:26px;border-top:2px dashed #A9BDB8;margin:0 4px;flex:0 0 auto}
+.rutabar .gbtn{margin-top:10px}
+
+/* ---------- CARDS ---------- */
+.cards{display:grid;grid-template-columns:1fr;gap:12px;margin-top:16px}
+@media(min-width:760px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radius);padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px}
+.card.star{border-color:#CBB47A;box-shadow:0 0 0 3px #F4ECD6 inset}
+.card .spotimg{display:none;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin:0}
+.card .spotimg.ok{display:block}
+.offbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin:14px 0}
+#btnOffline{font:600 14px/1 "Instrument Sans",system-ui,sans-serif;background:var(--basalto);color:#fff;border:0;border-radius:999px;padding:12px 18px;cursor:pointer}
+#btnOffline:disabled{opacity:.55;cursor:wait}
+.offhint{font-size:12.5px;color:#5A6B6E;max-width:520px;line-height:1.35}
+.card h3{font-family:"Fraunces",serif;font-weight:600;font-size:19px;margin:0;line-height:1.2}
+.card .meta{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:500;background:var(--bruma);border-radius:99px;padding:3px 9px;color:var(--tinta2)}
+.badge.walk{background:#E8F0E4;color:var(--verde)}
+.badge.hot{background:#F6E7DB;color:var(--termal)}
+.badge.star{background:#F6EFD8;color:#8A6D1F}
+.badge.time{background:#E6EEF2;color:var(--azul)}
+.card p{margin:0;font-size:14.5px;color:#2E4348}
+.acciones{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:4px}
+.gbtn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:13px;font-weight:600;
+  border-radius:99px;padding:6px 12px;border:1.5px solid var(--linea);color:var(--basalto);background:#fff}
+.gbtn:hover{border-color:var(--azul);color:var(--azul)}
+.gbtn.map{background:var(--azul);border-color:var(--azul);color:#fff}
+.gbtn.map:hover{background:#185A72;color:#fff}
+.gbtn.dir{border-color:var(--azul);color:var(--azul)}
+.gbtn.cam{background:#123039;border-color:#123039;color:#DFF0EC}
+.gbtn.ext{border-color:var(--termal);color:var(--termal)}
+
+/* ---------- WEBCAM DASHBOARD ---------- */
+.camgrid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+@media(min-width:640px){.camgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.camgrid{grid-template-columns:1fr 1fr 1fr}}
+.camcard{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:11px 12px;display:flex;flex-direction:column;gap:6px}
+.camcard .nm{font-weight:600;font-size:14.5px}
+.camcard .zona{font-size:12.5px;color:var(--tinta2)}
+.camcard .dia{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--hortensia);font-weight:600}
+.camcard a.ver{align-self:flex-start;font-size:12.5px;font-weight:600;text-decoration:none;background:#123039;color:#DFF0EC;border-radius:99px;padding:5px 11px;margin-top:2px}
+.subgrupo{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta2);margin:20px 0 0}
+
+/* ---------- INFO / TIPS ---------- */
+.tipgrid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+@media(min-width:760px){.tipgrid{grid-template-columns:1fr 1fr}}
+.tip{background:#fff;border:1px solid var(--linea);border-radius:var(--radius);padding:14px}
+.tip h3{font-family:"Fraunces",serif;font-size:18px;margin:0 0 8px}
+.tip ul{margin:0;padding-left:18px;font-size:14.5px}
+.tip li{margin:5px 0}
+.tip .mono{font-size:13px}
+
+.nota{margin-top:14px;background:#FBF6E8;border:1px solid #EAD9A8;border-radius:var(--radius);padding:12px 14px;font-size:14px}
+.nota b{color:#8A6D1F}
+
+footer{border-top:1px solid var(--linea);margin-top:44px;padding:18px 16px 30px;text-align:center;color:var(--tinta2);font-size:13px}
+footer .mono{font-size:12px}
+
+@media print{
+  nav.days,.gbtn.cam,.camchip,.offbar{display:none!important}
+  body{background:#fff}
+  .card,.tip,.rutabar,.decide,.camcard{break-inside:avoid;border-color:#bbb}
+  header.hero{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Azores · Cuaderno de ruta</div>
+    <h1>São Miguel <span class="isla">a pie</span></h1>
+    <div class="sub">MAR 01 SEP → MAR 08 SEP 2026 · 7 noches · base: Ponta Delgada · coche de alquiler</div>
+    <div class="twin" aria-hidden="true"></div>
+    <div class="ritual" aria-label="Ritual de cada mañana">
+      <span>☕ Café</span><span class="arrow">→</span>
+      <span>🎥 Cámaras SpotAzores</span><span class="arrow">→</span>
+      <span>🌫️ ¿Plan A o Plan B?</span><span class="arrow">→</span>
+      <span>🚗 En carretera antes de las 9:00</span>
+    </div>
+  </div>
+</header>
+
+<nav class="days" id="nav" aria-label="Navegación por días"></nav>
+
+<main>
+
+<section class="bloque" id="uso">
+  <div class="sec-head"><span class="blaze" aria-hidden="true"></span><h2>Cómo usar este cuaderno</h2></div>
+  <p class="tema">La isla tiene microclimas: puede diluviar en un cráter y hacer sol en la costa a 15 min. Por eso cada día lleva su <b>cámara de decisión</b> (SpotAzores, en directo), un <b>Plan B</b> si está tapado, la <b>ruta completa del día en un clic</b> de Google Maps y una tarjeta por sitio con posición 📍, cómo llegar 🧭, fotos 📷 y webcam 🎥. La niebla de cota alta abre y cierra en 15–30 min: si a las 8:30 está tapado, vuelve a mirar la cámara a media mañana desde el móvil.</p>
+  <div class="offbar"><button id="btnOffline" type="button">💾 Guardar versión offline (fotos incrustadas)</button><span class="offhint">Púlsalo una vez con internet: descarga este mismo archivo con todas las fotos ya dentro, listo para la isla sin cobertura.</span></div>
+  <div class="nota"><b>Hora local:</b> Azores va <b>2 h por detrás</b> de Madrid en verano. Amanece ≈ 07:05 y anochece ≈ 19:45–20:00 esa semana. Los parkings de los miradores estrella se llenan a partir de las 10:00–10:30: madrugar es el mejor truco de la isla.</div>
+</section>
+
+<div id="app"></div>
+
+<section class="bloque" id="cams">
+  <div class="sec-head"><span class="blaze" aria-hidden="true"></span><h2>🎥 Todas las cámaras de São Miguel</h2></div>
+  <p class="tema">Red oficial <a href="https://spotazores.com/en/webcams/sao-miguel/" target="_blank" rel="noopener">SpotAzores</a> (también hay <a href="https://spotazores.com/en/mobile-app/" target="_blank" rel="noopener">app iOS/Android</a>). Las de montaña deciden el plan; las de costa te dicen dónde bañarte.</p>
+  <div id="camdash"></div>
+</section>
+
+<section class="bloque" id="tips">
+  <div class="sec-head"><span class="blaze" aria-hidden="true"></span><h2>🎒 Práctico</h2></div>
+  <div class="tipgrid">
+    <div class="tip"><h3>Mochila del coche</h3><ul>
+      <li><b>Bañador oscuro + toalla oscura/vieja</b>: el agua ferruginosa (Terra Nostra, Caldeira Velha, Dona Beija) mancha lo claro para siempre.</li>
+      <li>Escarpines para pozas volcánicas (Mosteiros, Ferraria) y <b>gafas de snorkel</b> para el islote.</li>
+      <li>Capas + chubasquero fino siempre en la mochila, aunque el día salga de sol. Calzado de trail para los senderos.</li>
+      <li>Gorra y crema: el sol atlántico engaña. Botella de agua y algo de efectivo pequeño.</li>
+      <li>Ropa de cambio en el maletero: termas → cena sin pasar por el hotel.</li>
+    </ul></div>
+    <div class="tip"><h3>Conducir por la isla</h3><ul>
+      <li>Carreteras estrechas, cuestas del 15–20 % y <b>vacas sueltas</b>: tranquilo y con luces en la niebla.</li>
+      <li>Reposta antes de ir a Nordeste (pocas gasolineras en el este).</li>
+      <li>Del 15 jun al 30 sep la subida a <b>Lagoa do Fogo</b> está cerrada a coches de alquiler de 9:00 a 19:00 (detalle en el Día 3).</li>
+      <li>Aeropuerto ↔ centro: 10 min. Aparcar en Ponta Delgada: fácil por la zona del Forte / avenida.</li>
+    </ul></div>
+    <div class="tip"><h3>Reservas que conviene atar ya</h3><ul>
+      <li><b>Ilhéu de Vila Franca</b>: entradas online (aforo 400/día, vuelan) → <a href="https://bilheteira.cnvfc.net/" target="_blank" rel="noopener">bilheteira.cnvfc.net</a>. Temporada 2026: 12 jun – 11 oct.</li>
+      <li><b>Caldeira Velha</b>: franja horaria online (no venden online el mismo día) → <a href="https://parquesnaturais.azores.gov.pt/bilheteira/caldeiravelha" target="_blank" rel="noopener">parquesnaturais.azores.gov.pt</a>. 10 €/adulto, bloques de 1 h 30 desde las 9:00.</li>
+      <li><b>Cozido das Furnas</b>: reserva restaurante con 1–2 días (Tony's, Caldeiras &amp; Vulcões, Vale das Furnas).</li>
+      <li><b>Ballenas y delfines</b> (Día 7): Futurismo o Picos de Aventura, salida de la marina de Ponta Delgada, ~3 h.</li>
+      <li>Restaurantes de Ponta Delgada tipo <b>A Tasca</b>: reserva o llega al abrir.</li>
+    </ul></div>
+    <div class="tip"><h3>Enlaces útiles</h3><ul class="mono">
+      <li>🌦️ Predicción oficial: <a href="https://www.ipma.pt" target="_blank" rel="noopener">ipma.pt</a></li>
+      <li>🎥 Cámaras: <a href="https://spotazores.com/en/" target="_blank" rel="noopener">spotazores.com</a></li>
+      <li>🌊 Mareas (Ferraria): <a href="https://www.hidrografico.pt/prev.mare" target="_blank" rel="noopener">hidrografico.pt/prev.mare</a></li>
+      <li>🥾 Senderos oficiales: <a href="https://trails.visitazores.com" target="_blank" rel="noopener">trails.visitazores.com</a></li>
+      <li>🚌 Shuttle Lagoa do Fogo: <a href="https://lagoadofogo.pt" target="_blank" rel="noopener">lagoadofogo.pt</a></li>
+      <li>🏝️ Barco al islote: <a href="https://bilheteira.cnvfc.net/" target="_blank" rel="noopener">bilheteira.cnvfc.net</a></li>
+    </ul></div>
+  </div>
+  <div class="nota"><b>Comer y probar sí o sí:</b> cozido das Furnas · bolos lêvedos (Glória Moniz, Furnas) · queijadas da Vila (Morgado, Vila Franca) · piña azoreana · lapas grelhadas · queso São Jorge · pescado en Bar Caloura · Kima de maracuyá y licor de maracujá. En Ponta Delgada: A Tasca (clásico), Rotas da Ilha Verde (vegetariano top), Louvre Michaelense (desayuno/merienda bonita).</div>
+</section>
+
+</main>
+
+<footer>
+  <div>Cuaderno v1 · generado el 23 ago 2026 · precios y horarios ≈ verificados en agosto 2026, confirma los enlaces oficiales antes de ir</div>
+  <div class="mono">🎥 SpotAzores · 🗺️ Google Maps · 🥾 balizas PR rojo/amarillo = sendero oficial de Azores</div>
+</footer>
+
+<script>
+/* ================= HELPERS ================= */
+const M   = q => "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(q);
+const DIR = q => "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(q) + "&travelmode=driving";
+const F   = q => "https://www.google.com/search?q=" + encodeURIComponent(q) + "&udm=2";
+const RUTA = (stops, mode) => {
+  const o = stops[0], d = stops[stops.length-1], w = stops.slice(1,-1);
+  return "https://www.google.com/maps/dir/?api=1&origin=" + encodeURIComponent(o)
+    + "&destination=" + encodeURIComponent(d)
+    + (w.length ? "&waypoints=" + encodeURIComponent(w.join("|")) : "")
+    + "&travelmode=" + (mode || "driving");
+};
+
+/* ================= CÁMARAS SPOTAZORES ================= */
+const CAMS = {
+  "sc-cume":  {n:"Sete Cidades – Cumeeiras", zona:"Miradores del cráter (Vista do Rei, Boca do Inferno)", dia:"Día 2", g:"m", url:"https://spotazores.com/en/webcam/sao-miguel/sete-cidades-cumeeiras/"},
+  "sc-lagoa": {n:"Sete Cidades – Lagoa", zona:"Dentro del valle, orilla de la laguna", dia:"Día 2", g:"m", url:"https://spotazores.com/en/webcam/sao-miguel/sete-cidades-lagoa/"},
+  "fogo":     {n:"Lagoa do Fogo", zona:"La laguna del cráter y sus miradores", dia:"Día 3", g:"m", url:"https://spotazores.com/en/webcam/sao-miguel/lagoa-do-fogo/"},
+  "furnas":   {n:"Furnas (Lagoa das Furnas)", zona:"Valle de Furnas y caldeiras del cozido", dia:"Día 4", g:"m", url:"https://spotazores.com/en/webcam/sao-miguel/furnas/"},
+  "nordeste": {n:"Nordeste", zona:"El pueblo y los acantilados del este", dia:"Día 5", g:"m", url:"https://spotazores.com/en/webcam/sao-miguel/nordeste/"},
+  "faial":    {n:"Faial da Terra", zona:"Aldea de salida del Salto do Prego", dia:"Día 5", g:"m", url:"https://spotazores.com/en/webcam/sao-miguel/faial-da-terra/"},
+  "most-praia":{n:"Mosteiros – Praia", zona:"Playa negra e islotes, atardecer oeste", dia:"Día 2", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/mosteiros-praia/"},
+  "most-pocas":{n:"Mosteiros – Poças", zona:"Piscinas naturales de lava", dia:"Día 2", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/mosteiros-pocas/"},
+  "sbarbara": {n:"Praia de Santa Bárbara", zona:"Arenal surfero de la costa norte", dia:"Día 3", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-de-santa-barbara/"},
+  "rgrande":  {n:"Ribeira Grande", zona:"El pueblo y su costa", dia:"Día 3", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/ribeira-grande/"},
+  "piscrg":   {n:"Piscinas da Ribeira Grande", zona:"Piscinas de marea del pueblo", dia:"Día 3", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/piscinas-da-ribeira-grande/"},
+  "aguadalto":{n:"Praia de Água d'Alto", zona:"Arranque del sendero PRC02 al Fogo", dia:"Días 3 y 6", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-de-agua-dalto/"},
+  "moinhos":  {n:"Praia dos Moinhos", zona:"Cala de Porto Formoso, junto al té", dia:"Día 5", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-dos-moinhos/"},
+  "rquente":  {n:"Praia da Ribeira Quente", zona:"Playa de agua templada bajo Furnas", dia:"Día 5", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-da-ribeira-quente/"},
+  "pelames":  {n:"Piscinas dos Pelames", zona:"Zona de baño de Povoação", dia:"Día 5", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/piscinas-dos-pelames/"},
+  "povoacao": {n:"Povoação", zona:"Puerto y pueblo del sureste", dia:"Día 5", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/povoacao/"},
+  "vinha":    {n:"Praia Vinha d'Areia", zona:"Vila Franca, junto al embarque del islote", dia:"Día 6", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-vinha-dareia/"},
+  "caloura":  {n:"Caloura", zona:"Puertito, cala y mar turquesa", dia:"Día 6", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/caloura/"},
+  "pisclagoa":{n:"Piscinas da Lagoa", zona:"Piscinas de mar del pueblo de Lagoa", dia:"Extra", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/piscinas-da-lagoa/"},
+  "pdl":      {n:"Ponta Delgada – Marina", zona:"Marina, avenida y ambiente de la capital", dia:"Días 1 y 7", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/ponta-delgada-marina/"},
+  "milicias": {n:"Praia das Milícias", zona:"Playa urbana grande de Ponta Delgada", dia:"Extra", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-das-milicias/"},
+  "populo":   {n:"Praia do Pópulo", zona:"Playa urbana, este de la capital", dia:"Extra", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-do-populo/"},
+  "sroque":   {n:"Praia de São Roque", zona:"Playa del paseo de São Roque", dia:"Extra", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/praia-de-sao-roque/"},
+  "fornocal": {n:"Zona Balnear Forno da Cal", zona:"Baño en San Roque / Livramento", dia:"Extra", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/zona-balnear-forno-da-cal/"},
+  "pocoscap": {n:"Poços de Capelas e São Vicente", zona:"Pozas de la costa norte de Ponta Delgada", dia:"Extra", g:"c", url:"https://spotazores.com/en/webcam/sao-miguel/pocos-de-capelas-e-sao-vicente/"}
+};
+
+/* ================= ITINERARIO ================= */
+const DIAS = [
+
+/* ---------- DÍA 1 ---------- */
+{ id:"d1", chip:"D1 Llegada", num:"Día 1", fecha:"Martes 1 · septiembre", titulo:"Llegada y Ponta Delgada a pie",
+  wiki:"Ponta_Delgada",
+  tema:"Aterrizáis a mediodía: recogéis el coche en el aeropuerto, 10 min hasta el Gaivota, check-in, comida y la capital sin prisas. Todo el casco histórico se hace andando, en llano, y remata con el atardecer desde la ermita del cerro.",
+  cams:["pdl"],
+  planb:"Si llueve: Museu Carlos Machado, Gruta do Carvão (tubo de lava con visita guiada) y merienda larga en el Louvre Michaelense.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Portas da Cidade, Ponta Delgada","Igreja Matriz de São Sebastião, Ponta Delgada","Mercado da Graça, Ponta Delgada","Forte de São Brás, Ponta Delgada","Ermida da Mãe de Deus, Ponta Delgada"], mode:"walking", nota:"coche aparcado en el hotel · paseo llano ≈ 4 km"},
+  spots:[
+    {n:"Base: Hotel Gaivota Azores", q:"Hotel Gaivota Azores, Ponta Delgada", cam:["pdl"], time:"🏨 check-in desde 14:00",
+     links:[["🌐 hotelgaivota.com","https://www.hotelgaivota.com/"]],
+     d:"Vuestro campamento base las 7 noches: en plena avenida marginal (Av. Infante D. Henrique, 103), junto a Portas do Mar y con la marina enfrente — la webcam de Ponta Delgada enseña literalmente vuestro barrio. Del aeropuerto al hotel, 10 min con el coche de alquiler; de la puerta a las Portas da Cidade, 10 andando. Desayuno desde las 7:30: encaja con los madrugones de ruta."},
+    {n:"Portas da Cidade + Praça Gonçalo Velho", wiki:"Portas da Cidade", cam:["pdl"], q:"Portas da Cidade, Ponta Delgada", star:1, time:"⏱ 20 min",
+     d:"Los tres arcos blanco y basalto de 1783, símbolo de la ciudad y km 0 del paseo. La plaza y las calles empedradas de alrededor son el corazón del casco."},
+    {n:"Igreja Matriz de São Sebastião", wiki:"Igreja Matriz de São Sebastião (Ponta Delgada)", q:"Igreja Matriz de São Sebastião, Ponta Delgada", time:"⏱ 20 min",
+     d:"Matriz del s. XVI con portada manuelina de piedra dorada traída de Portugal continental y techos de cedro local. La torre del reloj sale en todas las fotos de las Portas."},
+    {n:"Mercado da Graça", wiki:"Mercado da Graça", q:"Mercado da Graça, Ponta Delgada", time:"⏱ 30 min",
+     d:"El mercado de la isla: piñas azoreanas, maracujá, quesos de las nueve islas. Ideal para cargar fruta y queso para las rutas de los próximos días."},
+    {n:"Forte de São Brás", wiki:"Forte de São Brás", cam:["pdl"], q:"Forte de São Brás, Ponta Delgada", time:"⏱ 45 min",
+     d:"Fortaleza renacentista del s. XVI que defendía el puerto de corsarios; hoy museo militar con terrazas y vistas a la bahía y a la marina."},
+    {n:"Campo de São Francisco + Santuario del Santo Cristo", wiki:"Convento de Nossa Senhora da Esperança (Ponta Delgada)", q:"Convento de Nossa Senhora da Esperança, Ponta Delgada", time:"⏱ 20 min",
+     d:"La explanada de las mayores fiestas de Azores y el convento que guarda la venerada imagen del Senhor Santo Cristo dos Milagres, cubierta de exvotos y joyas."},
+    {n:"Ermida da Mãe de Deus", wiki:"Ermida da Mãe de Deus (Ponta Delgada)", cam:["pdl"], q:"Ermida da Mãe de Deus, Ponta Delgada", time:"⏱ 30 min", badges:[{c:"time",t:"🌅 atardecer"}],
+     d:"Ermita neogótica sobre un cerro con la mejor panorámica de la ciudad y el puerto. Subida corta y empinada: el sitio para despedir el primer día con luz dorada."},
+    {n:"Cena: A Tasca (o Rotas da Ilha Verde)", q:"A Tasca, Ponta Delgada", time:"🍽 cena",
+     d:"A Tasca es el clásico de tapas azoreanas (lapas, queso fresco con pimienta, atún): llegad al abrir o reservad. Rotas da Ilha Verde, vegetariano con productos de la isla, es el plan B redondo.",
+     links:[["📍 Rotas da Ilha Verde", M("Rotas da Ilha Verde, Ponta Delgada")]]}
+  ]
+},
+
+/* ---------- DÍA 2 ---------- */
+{ id:"d2", chip:"D2 Sete Cidades", num:"Día 2", fecha:"Miércoles 2 · septiembre", titulo:"Sete Cidades y el oeste salvaje",
+  wiki:"Lagoa_das_Sete_Cidades",
+  tema:"El plato fuerte: el cráter de las dos lagunas (azul y verde), caminata por la cresta, el pueblo dentro del volcán y remate en la costa oeste con piscinas de lava, termas en el mar y el mejor atardecer de la isla.",
+  cams:["sc-cume","sc-lagoa","most-praia"],
+  planb:"Cráter tapado en la cámara Cumeeiras → invierte el día: Mosteiros y Ferraria por la mañana (la costa casi siempre está abierta) y sube a los miradores cuando la cámara despeje a media mañana. Si sigue cerrado todo el día, intercambia con el Día 6 y deja Sete Cidades para más adelante.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Miradouro do Pico do Carvão","Lagoa do Canário","Miradouro da Vista do Rei","Sete Cidades, São Miguel","Miradouro da Ponta do Escalvado","Mosteiros, São Miguel","Ponta da Ferraria","Hotel Gaivota Azores, Ponta Delgada"], nota:"≈ 80 km coche · salida 8:00–8:30"},
+  spots:[
+    {n:"Miradouro do Pico do Carvão", wiki:"Miradouro do Pico do Carvão", q:"Miradouro do Pico do Carvão", time:"⏱ 15 min",
+     d:"Primer balcón de la subida: media isla a la vista, de costa a costa. A un paso queda el acueducto del Muro das Nove Janelas, con sus arcos comidos de musgo."},
+    {n:"Lagoa do Canário + Miradouro da Boca do Inferno", wiki:"Lagoa do Canário", q:"Miradouro da Boca do Inferno", star:1, time:"⏱ 1 h",
+     badges:[{c:"walk",t:"🥾 1,5 km i/v"}], cam:["sc-cume"],
+     d:"Desde el parking del Canário, 15 min de pista entre criptomerias hasta LA vista de Azores: la Lagoa de Santiago y las Sete Cidades encajadas en cráteres verdes. Cuanto más pronto, más solos y menos nubes."},
+    {n:"Miradouro da Vista do Rei", wiki:"Lagoa das Sete Cidades", q:"Miradouro da Vista do Rei", star:1, time:"⏱ 30 min", cam:["sc-cume"],
+     d:"La postal clásica de las lagunas gemelas: la Azul y la Verde separadas por el puente. El parking se llena desde media mañana; vosotros ya estaréis allí."},
+    {n:"Sendero de las Cumeeiras (PRC04: Vista do Rei → Sete Cidades)", wiki:"Lagoa de Santiago", q:"Miradouro da Vista do Rei", time:"⏱ 2 h 30",
+     badges:[{c:"walk",t:"🥾 7,8 km · bajada −260 m"}], cam:["sc-cume"],
+     links:[["🥾 Ficha oficial del sendero","https://trails.visitazores.com"]],
+     d:"Vuestra caminata: por el filo del cráter con las lagunas a un lado y el mar al otro, bajando hasta el pueblo. Es lineal: opción de taxi de vuelta al coche, o hacer ida y vuelta parcial por la cresta (solo el tramo de cumbre ya vale el viaje)."},
+    {n:"Pueblo de Sete Cidades + orilla de la Lagoa Azul", wiki:"Sete Cidades (Ponta Delgada)", q:"Sete Cidades, São Miguel", time:"⏱ 1–2 h", cam:["sc-lagoa"],
+     d:"Un pueblo dentro del volcán: iglesia neogótica de São Nicolau, hortensias, vacas y paseo llano por la orilla. Kayak o SUP en la Lagoa Azul si apetece, y café para reponer tras la bajada."},
+    {n:"Miradouro do Cerrado das Freiras", wiki:"Miradouro do Cerrado das Freiras", cam:["sc-cume"], q:"Miradouro do Cerrado das Freiras", time:"⏱ 15 min",
+     d:"El balcón directo sobre la Lagoa de Santiago, la esmeralda escondida en su propio cráter: el verde más irreal de la isla."},
+    {n:"Miradouro da Ponta do Escalvado", wiki:"Ponta do Escalvado", cam:["most-praia"], q:"Miradouro da Ponta do Escalvado", time:"⏱ 15 min", badges:[{c:"time",t:"🌅 tarde"}],
+     d:"Acantilados del extremo oeste con Mosteiros y sus islotes negros a vista de pájaro. Con luz de tarde es puro drama atlántico."},
+    {n:"Mosteiros: piscinas naturales + atardecer", wiki:"Mosteiros (Ponta Delgada)", q:"Piscinas Naturais dos Mosteiros", star:1, time:"⏱ 1–2 h",
+     badges:[{c:"time",t:"🌅 atardecer"}], cam:["most-praia","most-pocas"],
+     d:"Baño entre coladas de lava frente a los islotes y el atardecer más famoso de São Miguel (el sol cae justo detrás de las rocas). Chiringuitos y restaurantes de pescado para cenar allí mismo."},
+    {n:"Ponta da Ferraria (termas en el mar)", wiki:"Ponta da Ferraria", cam:["most-pocas"], q:"Ponta da Ferraria", time:"⏱ 1 h",
+     badges:[{c:"hot",t:"♨️ marea baja"}],
+     links:[["🌊 Tabla de mareas","https://www.hidrografico.pt/prev.mare"]],
+     d:"Agua termal que brota dentro del propio océano bajo un acantilado de lava: con marea baja o media-baja se está caliente agarrado a las cuerdas; con marea alta no funciona. Mirad la tabla y encajadla antes o después de Mosteiros. Alternativa de atardecer al baño."}
+  ]
+},
+/* ---------- DÍA 3 ---------- */
+{ id:"d3", chip:"D3 Lagoa do Fogo", num:"Día 3", fecha:"Jueves 3 · septiembre", titulo:"Lagoa do Fogo, termas y costa norte",
+  wiki:"Lagoa_do_Fogo",
+  tema:"La laguna virgen del cráter del volcán de Fogo, ganada a pie como debe ser, y de premio: cascada termal en la selva, otra cascada encajonada y tarde de pueblo y playa negra en la costa norte.",
+  cams:["fogo","sbarbara","rgrande"],
+  planb:"Fogo tapado en la cámara → Caldeira Velha funciona igual o mejor con bruma (está bajo el bosque), más Salto do Cabrito, Ribeira Grande y Santa Bárbara; los miradores de la laguna pasan al final del día si abre, o a la repesca del Día 7.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Praia de Água d'Alto","Caldeira Velha","Salto do Cabrito","Ribeira Grande, São Miguel","Praia de Santa Bárbara, Ribeira Grande","Hotel Gaivota Azores, Ponta Delgada"], nota:"≈ 70 km coche + caminata"},
+  spots:[
+    {n:"Cómo subir al Fogo en 2026 (importante)", cam:["fogo"], q:"Miradouro da Lagoa do Fogo", star:1, time:"ℹ️ acceso",
+     links:[["🚌 Shuttle y paradas","https://lagoadofogo.pt"]],
+     d:"Del 15 jun al 30 sep, la carretera de cumbre EN5-2A (entre Caldeira Velha y Casa da Água) está cerrada a coches de turistas de 9:00 a 19:00. Opciones: A) subir a pie por el sendero PRC02 (la vuestra, sin depender de nadie); B) shuttle hop-on/hop-off 5 €/persona con paradas en Caldeira Velha, Bela Vista, Pico da Barrosa y el Miradouro (nueva concesión desde agosto 2026: confirmad horarios en la web); C) madrugar y estar arriba antes de las 9:00 con el coche, bajando después."},
+    {n:"PRC02: Praia → Lagoa do Fogo (la caminata del día)", wiki:"Lagoa do Fogo", q:"Praia de Água d'Alto", star:1, time:"⏱ 4–5 h",
+     badges:[{c:"walk",t:"🥾 ≈11 km i/v · +600 m"}], cam:["fogo","aguadalto"],
+     links:[["🥾 Ficha oficial del sendero","https://trails.visitazores.com"]],
+     d:"Desde la costa sur (el sendero sale señalizado junto a la Praia de Água d'Alto) se sube entre laurisilva y levadas hasta la playa fluvial de la laguna, elegida una de las 7 Maravillas–Playa Salvaje de Portugal. Llegáis a una orilla sin carretera, muchas veces casi vacía. Baño prohibido: es reserva de agua potable."},
+    {n:"Miradouro da Lagoa do Fogo + Pico da Barrosa", wiki:"Pico da Barrosa", q:"Miradouro da Lagoa do Fogo", time:"⏱ 45 min",
+     badges:[{c:"walk",t:"🥾 2,5 km i/v opcional"}], cam:["fogo"],
+     d:"Los dos balcones de la carretera de cumbre: el Miradouro (norte), del que baja un senderito de 30–40 min a la playa de la laguna, y el Pico da Barrosa (949 m), techo del centro de la isla con la laguna a un lado y las dos costas al otro. En shuttle o antes de las 9:00."},
+    {n:"Caldeira Velha", wiki:"Caldeira Velha", cam:["fogo"], q:"Caldeira Velha", star:1, time:"⏱ 1 h 30",
+     badges:[{c:"hot",t:"♨️ 10 € · reserva online"}],
+     links:[["🎟️ Entradas (franja horaria)","https://parquesnaturais.azores.gov.pt/bilheteira/caldeiravelha"]],
+     d:"Cascada termal a ~30 °C cayendo del bosque a pozas de agua férrea color ámbar, entre helechos arbóreos: parece Jurassic Park. Monumento natural con aforo y turnos de 1 h 30 desde las 9:00: comprad la franja online el día antes (no venden online el mismo día). Bañador oscuro obligatorio moralmente."},
+    {n:"Salto do Cabrito", wiki:"Salto do Cabrito", cam:["rgrande"], q:"Salto do Cabrito", time:"⏱ 45 min",
+     badges:[{c:"walk",t:"🥾 ≈2 km i/v"}],
+     d:"Cascada de 40 m cayendo limpia en un cañón estrecho, con poza para valientes. Acceso corto a pie desde la central hidroeléctrica; el sendero se reabrió en marzo de 2026 tras mejoras."},
+    {n:"Ribeira Grande", wiki:"Ribeira Grande (Açores)", q:"Ribeira Grande, São Miguel", time:"⏱ 1 h", cam:["rgrande","piscrg"],
+     d:"La segunda ciudad de la isla: puente de ocho arcos, jardín municipal, casonas señoriales y buen café. Parada perfecta entre las cascadas y la playa."},
+    {n:"Praia de Santa Bárbara", wiki:"Praia de Santa Bárbara", q:"Praia de Santa Bárbara, Ribeira Grande", time:"⏱ 1–2 h",
+     badges:[{c:"time",t:"🌅 tarde"}], cam:["sbarbara"],
+     d:"El gran arenal negro de la costa norte, capital del surf azoreano. Una caña en el Tuká Tulá con los pies en la arena viendo romper el Atlántico cierra el día que da gusto."}
+  ]
+},
+
+/* ---------- DÍA 4 ---------- */
+{ id:"d4", chip:"D4 Furnas", num:"Día 4", fecha:"Viernes 4 · septiembre", titulo:"Furnas: volcán, cozido y termas",
+  wiki:"Lagoa_das_Furnas",
+  tema:"Un día entero dentro de un volcán habitado: fumarolas, el cozido desenterrado de la tierra, jardín botánico con piscina termal gigante y pozas calientes de noche. El día más gastronómico y humeante del viaje.",
+  cams:["furnas"],
+  planb:"Furnas es el Plan B universal: funciona hasta lloviendo (fumarolas y termas ganan con bruma). Si el día amanece perfecto en toda la isla, este día se puede intercambiar con cualquier otro sin dolor.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Miradouro do Pico do Ferro","Caldeiras da Lagoa das Furnas","Furnas","Parque Terra Nostra","Poça da Dona Beija","Hotel Gaivota Azores, Ponta Delgada"], nota:"≈ 90 km coche · reservar cozido antes"},
+  spots:[
+    {n:"Miradouro do Pico do Ferro", wiki:"Miradouro do Pico do Ferro", q:"Miradouro do Pico do Ferro", time:"⏱ 15 min", cam:["furnas"],
+     d:"El valle de Furnas entero a vuestros pies: la laguna, el pueblo humeante y las paredes del cráter. Para entender dónde os vais a meter el resto del día."},
+    {n:"Caldeiras da Lagoa das Furnas (el cozido saliendo de la tierra)", wiki:"Lagoa das Furnas", q:"Caldeiras da Lagoa das Furnas", star:1, time:"⏱ 45 min", cam:["furnas"],
+     d:"Campo de fumarolas junto a la laguna donde los restaurantes entierran las ollas del cozido. Llegad entre 11:30 y 12:30 para ver cómo las izan humeando de los agujeros volcánicos: huele a azufre y a comida a la vez. Pasarelas y centro de interpretación al lado."},
+    {n:"Vuelta a pie a la Lagoa das Furnas + Ermida das Vitórias", wiki:"Ermida de Nossa Senhora das Vitórias", cam:["furnas"], q:"Ermida de Nossa Senhora das Vitórias", time:"⏱ 2 h 15",
+     badges:[{c:"walk",t:"🥾 9,5 km · llana"}],
+     d:"La orilla completa de la laguna pasando por la capilla neogótica de José do Canto y su mata-jardín centenaria. Llana y recortable: podéis hacer solo el tramo capilla–caldeiras y volver, según venga el hambre."},
+    {n:"Cozido das Furnas (comida)", wiki:"Cozido das Furnas", q:"Restaurante Tony's, Furnas", star:1, time:"🍽 13:00–14:00",
+     links:[["📍 Caldeiras & Vulcões", M("Restaurante Caldeiras e Vulcões, Furnas")],["📍 Vale das Furnas", M("Restaurante Vale das Furnas")]],
+     d:"El guiso de carnes, morcilla y verduras cocido 6 h bajo tierra volcánica: el plato de la isla. Reservad con 1–2 días diciendo que queréis cozido (raciones limitadas al día): Tony's es el clásico, Caldeiras & Vulcões y Vale das Furnas, alternativas igual de buenas."},
+    {n:"Caldeiras das Furnas (pueblo) + bolos lêvedos", wiki:"Furnas (Povoação)", q:"Caldeiras das Furnas", time:"⏱ 45 min", cam:["furnas"],
+     d:"Géiseres y barro burbujeando en mitad del pueblo, fuentes de aguas minerales cada una con su sabor (probadlas: alguna pica) y bolos lêvedos calientes de Glória Moniz para merendar."},
+    {n:"Parque Terra Nostra", wiki:"Parque Terra Nostra", cam:["furnas"], q:"Parque Terra Nostra", star:1, time:"⏱ 2 h",
+     badges:[{c:"hot",t:"♨️ ≈10–12 €"}],
+     d:"Jardín botánico del s. XVIII con 12 ha de camelias, cicas y avenidas de agua… y la famosa piscina termal ferruginosa gigante a ~38 °C, color chocolate por el hierro. Bañador y toalla oscuros: lo claro se tiñe para siempre."},
+    {n:"Poça da Dona Beija (de noche)", wiki:"Poça da Dona Beija", cam:["furnas"], q:"Poça da Dona Beija", time:"🌙 noche",
+     badges:[{c:"hot",t:"♨️ ≈6–8 € · hasta ~23:00"}],
+     d:"Cinco pozas termales a 39 °C junto a un arroyo, iluminadas de noche: el broche del día ya cenados. Entrada económica, taquillas y ambiente de vapor bajo las estrellas. Confirmad horario de cierre en la puerta o web."}
+  ]
+},
+
+/* ---------- DÍA 5 ---------- */
+{ id:"d5", chip:"D5 Nordeste", num:"Día 5", fecha:"Sábado 5 · septiembre", titulo:"Costa norte, té y el gran este",
+  wiki:"Nordeste_(Açores)",
+  tema:"El día de carretera panorámica: acantilados del norte, la única plantación de té de Europa en activo, cascadas con molinos, los miradores-jardín del fin del mundo y vuelta por el sureste con opción de cascada escondida.",
+  cams:["nordeste","faial","moinhos"],
+  planb:"Punta este tapada en la cámara de Nordeste → intercambia con el Día 6 (costa sur). Gorreana y Ribeira dos Caldeirões funcionan bien incluso con bruma; los miradores del Sossego y Madrugada, no.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Miradouro de Santa Iria","Fábrica de Chá Gorreana","Parque Natural da Ribeira dos Caldeirões","Farol do Arnel","Miradouro da Ponta do Sossego","Miradouro da Ponta da Madrugada","Faial da Terra","Hotel Gaivota Azores, Ponta Delgada"], nota:"≈ 150 km · el día más largo de coche · repostad antes"},
+  spots:[
+    {n:"Miradouro de Santa Iria", wiki:"Miradouro de Santa Iria", cam:["moinhos"], q:"Miradouro de Santa Iria", time:"⏱ 15 min",
+     d:"El acantilado clásico de la costa norte: la costa verde cayendo al Atlántico en capas hasta perderse. Cinco minutos de desvío que valen oro con luz de mañana."},
+    {n:"Chá Gorreana (plantación de té)", wiki:"Gorreana", q:"Fábrica de Chá Gorreana", star:1, time:"⏱ 1 h",
+     badges:[{c:"walk",t:"🥾 paseo entre el té"}], cam:["moinhos"],
+     d:"La plantación de té más antigua de Europa (1883) y única en activo junto a la vecina Porto Formoso: fábrica de visita libre y gratuita con la maquinaria centenaria funcionando, degustación incluida y senderito entre los bancales verdes con el mar de fondo."},
+    {n:"Parque Natural da Ribeira dos Caldeirões", wiki:"Parque Natural da Ribeira dos Caldeirões", cam:["nordeste"], q:"Parque Natural da Ribeira dos Caldeirões", time:"⏱ 45 min",
+     d:"Cascadas, molinos de agua restaurados y hortensias en un barranco de postal. Parada corta, fotogénica y con merendero, justo a pie de carretera camino de Nordeste."},
+    {n:"Nordeste + Farol do Arnel", wiki:"Farol do Arnel", q:"Farol do Arnel", time:"⏱ 1 h",
+     badges:[{c:"walk",t:"🥾 2,8 km i/v · rampa 30 %"}], cam:["nordeste"],
+     d:"El pueblo más remoto y cuidado de la isla, y su faro de 1876 abajo en la punta. La bajada a pie es una rampa de hormigón brutal (la subida de vuelta, más): solo si apetece ganarse las vistas; si no, se ve desde el mirador de arriba."},
+    {n:"Miradouro da Ponta do Sossego", wiki:"Miradouro da Ponta do Sossego", cam:["nordeste"], q:"Miradouro da Ponta do Sossego", star:1, time:"⏱ 30–45 min",
+     d:"El mirador-jardín más bonito de Azores: terrazas de flores colgadas del acantilado con pérgolas y zona de picnic. Si hay que elegir un solo sitio para comer el bocadillo del Mercado da Graça, es este."},
+    {n:"Miradouro da Ponta da Madrugada", wiki:"Miradouro da Ponta da Madrugada", cam:["nordeste"], q:"Miradouro da Ponta da Madrugada", time:"⏱ 15 min",
+     d:"El gemelo del Sossego a 5 minutos, orientado a levante (aquí vienen los locales a ver amanecer). Otro jardín sobre el mar para rematar la punta este."},
+    {n:"Salto do Prego + aldea de Sanguinho (PR09)", wiki:"Salto do Prego", q:"Faial da Terra", time:"⏱ 2 h",
+     badges:[{c:"walk",t:"🥾 4,5 km circular · +350 m"}], cam:["faial"],
+     links:[["🥾 Ficha oficial del sendero","https://trails.visitazores.com"]],
+     d:"Desde la aldea de Faial da Terra, circular por laurisilva hasta una cascada con poza esmeralda, volviendo por Sanguinho, aldea abandonada y recuperada piedra a piedra. Si el día viene ya largo, pasa esta joya a la repesca del Día 7: merece piernas frescas."},
+    {n:"Ribeira Quente o Povoação (baño y merienda)", wiki:"Ribeira Quente", q:"Praia da Ribeira Quente", time:"⏱ 1 h",
+     cam:["rquente","pelames","povoacao"],
+     d:"Camino de vuelta por el sur: la Praia do Fogo de Ribeira Quente tiene el agua templada por fumarolas submarinas (en serio), y Povoação, primer asentamiento de la isla, sus piscinas dos Pelames y buen café de puerto."}
+  ]
+},
+/* ---------- DÍA 6 ---------- */
+{ id:"d6", chip:"D6 Islote", num:"Día 6", fecha:"Domingo 6 · septiembre", titulo:"Ilhéu de Vila Franca y la costa sur",
+  wiki:"Ilhéu_de_Vila_Franca_do_Campo",
+  tema:"Snorkel dentro de un cráter volcánico en medio del mar, una escalinata blanca entre viñedos, el dulce de la isla, una laguna secreta en el bosque y pescado a la brasa en un puertito de lava.",
+  cams:["vinha","caloura","aguadalto"],
+  planb:"Mar picado o sin billetes para el islote (míralo en la cámara Vinha d'Areia) → Congro + Senhora da Paz + Caloura hoy, e islote a la repesca del Día 7 comprando online la víspera en bilheteira.cnvfc.net.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Marina de Vila Franca do Campo","Ermida de Nossa Senhora da Paz","Lagoa do Congro","Caloura","Hotel Gaivota Azores, Ponta Delgada"], nota:"≈ 65 km coche · billetes del islote comprados de víspera"},
+  spots:[
+    {n:"Ilhéu de Vila Franca do Campo", wiki:"Ilhéu de Vila Franca do Campo", q:"Ilhéu de Vila Franca do Campo", star:1, time:"⏱ 2–4 h",
+     badges:[{c:"time",t:"🎟️ aforo 400/día"},{c:"walk",t:"🤿 snorkel"}], cam:["vinha"],
+     links:[["🎟️ Entradas oficiales","https://bilheteira.cnvfc.net/"],["📍 Taquilla y embarque (marina sur)", M("37.7134411,-25.43045324")]],
+     d:"Un cráter volcánico casi perfecto a 1 km de la costa, con laguna interior de agua cristalina conectada al mar por un canal: reserva natural, aforo de 400 personas/día (200 a la vez) y barco de 10 min desde la marina. Temporada 2026: 12 jun – 11 oct, con los baños reabiertos tras el cierre de 2025. Comprad online con 1–10 días de antelación (vuelan); la taquilla física solo vende para el mismo día (9:45–17:00) y se embarca por orden de llegada. Llevad gafas de snorkel: el fondo es un acuario."},
+    {n:"Ermida de Nossa Senhora da Paz", wiki:"Ermida de Nossa Senhora da Paz", cam:["vinha"], q:"Ermida de Nossa Senhora da Paz", star:1, time:"⏱ 45 min",
+     badges:[{c:"walk",t:"🥾 subida a pie opcional"}],
+     d:"La escalinata blanca de diez tramos con azulejos que sube en zigzag sobre Vila Franca: la capilla más fotografiada de la isla, con el islote flotando al fondo. Se puede subir en coche, pero andando entre viñedos sabe mejor."},
+    {n:"Queijadas da Vila (Morgado)", q:"Queijadas Morgado, Vila Franca do Campo", time:"⏱ 15 min",
+     d:"El dulce insignia de la isla, de receta conventual: tartaletas de yema con forma de estrella, todavía envueltas a mano. Caja para el coche y caja para casa."},
+    {n:"Lagoa do Congro", wiki:"Lagoa do Congro", q:"Lagoa do Congro", time:"⏱ 1 h 15",
+     badges:[{c:"walk",t:"🥾 ≈2 km i/v · bajada"}],
+     d:"Una laguna verde botella escondida en un cráter tapizado de bosque, sin carretera a la vista: 20 minutos de bajada entre árboles cubiertos de musgo y silencio de cuento. Con algo de bruma todavía gana."},
+    {n:"Caloura + Bar Caloura", wiki:"Caloura", q:"Caloura", star:1, time:"🍽 tarde", cam:["caloura"],
+     d:"Puertito de postal entre viñedos amurallados de lava, con piscina natural y el Bar Caloura: pescado del día a la brasa con las mesas casi dentro del agua. No aceptan reserva: id con margen o convertidlo en merienda-cena. El baño en la cala, incluido."},
+    {n:"Praia de Água d'Alto (remojón de vuelta)", wiki:"Praia de Água d'Alto", q:"Praia de Água d'Alto", time:"⏱ opcional", cam:["aguadalto"],
+     d:"Arenal amplio y protegido de camino a casa, por si el cuerpo pide un último baño con la luz baja."}
+  ]
+},
+
+/* ---------- DÍA 7 ---------- */
+{ id:"d7", chip:"D7 Ballenas", num:"Día 7", fecha:"Lunes 7 · septiembre", titulo:"Ballenas, piñas y repesca",
+  wiki:"Cachalote",
+  tema:"Mañana de mar en el santuario de cetáceos del Atlántico, la piña que tarda dos años en crecer, un tubo de lava bajo la ciudad… y la tarde de repesca: lo que la niebla robó, hoy se recupera.",
+  cams:["pdl"],
+  planb:"Este día ES el Plan B del viaje. Si hay marejada y cancelan la salida de ballenas, la empresa recoloca o devuelve: adelantad entonces la repesca de la tarde y a disfrutar de la isla.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Marina de Ponta Delgada","Plantação de Ananases A Arruda","Gruta do Carvão","Ponta da Ferraria"], nota:"≈ 15 km + la repesca que toque"},
+  spots:[
+    {n:"Ballenas y delfines (salida en barco)", wiki:"Cachalote", q:"Marina de Ponta Delgada", star:1, time:"⏱ 3 h · mañana",
+     badges:[{c:"time",t:"🐋 ≈65–75 €"}], cam:["pdl"],
+     links:[["🌊 Futurismo","https://www.futurismo.pt"],["🌊 Picos de Aventura","https://www.picosdeaventura.com"]],
+     d:"Azores es uno de los mejores sitios del mundo para cetáceos: cachalotes residentes todo el año, delfines casi garantizados y, con suerte de temporada, algo más grande. Salidas de ~3 h desde la marina en zodiac (más emoción) o catamarán (más estable), con biólogos a bordo y vigías en los acantilados dirigiendo el barco. Reservad la víspera."},
+    {n:"Plantação de Ananases A Arruda", wiki:"Ananás dos Açores", q:"Plantação de Ananases A Arruda", time:"⏱ 45 min",
+     d:"Los invernaderos blancos encalados donde la piña azoreana crece ¡dos años! hasta el punto justo de dulzor. Visita libre y gratuita entre estufas, y tienda con licor, mermelada y bombones de piña."},
+    {n:"Gruta do Carvão", wiki:"Gruta do Carvão", q:"Gruta do Carvão", time:"⏱ 1 h",
+     d:"El tubo de lava que corre bajo la propia Ponta Delgada: galerías de basalto con estalactitas de lava, en visita guiada. El contrapunto subterráneo perfecto a una semana de miradores."},
+    {n:"Tarde de repesca (decidid con las cámaras)", cam:["sc-cume","fogo","faial"],
+     d:"Abrid SpotAzores y cobrad las deudas de la semana: miradores del Fogo si no abrieron (shuttle o después de las 19:00 en coche), Salto do Prego si quedó pendiente, kayak en la Lagoa Azul de Sete Cidades, o simplemente la playa que más os gustara. Hoy no hay plan: hay libertad."},
+    {n:"Último atardecer: Ferraria o Mosteiros", wiki:"Ponta da Ferraria", q:"Ponta da Ferraria", time:"🌅 atardecer",
+     badges:[{c:"hot",t:"♨️ si hay marea baja"}], cam:["most-praia"],
+     links:[["🌊 Tabla de mareas","https://www.hidrografico.pt/prev.mare"]],
+     d:"Despedida por todo lo alto en el oeste: baño termal en el mar de la Ferraria si la marea acompaña, o las rocas de Mosteiros con el sol cayendo detrás de los islotes. Cena de pescado allí mismo y de vuelta a hacer la maleta."}
+  ]
+},
+
+/* ---------- DÍA 8 ---------- */
+{ id:"d8", chip:"D8 Vuelta", num:"Día 8", fecha:"Martes 8 · septiembre", titulo:"Vuelo de vuelta",
+  wiki:"",
+  tema:"Vuelo por la mañana: madrugón corto (el aeropuerto está a 10 minutos del centro), depósito lleno y a casa con la maleta oliendo a azufre, té y queijadas.",
+  cams:["pdl"],
+  planb:"Si el vuelo saliera más tarde de lo previsto: desayuno largo en el Louvre Michaelense, último paseo por la marina o Gruta do Carvão antes de devolver el coche.",
+  ruta:{stops:["Hotel Gaivota Azores, Ponta Delgada","Aeroporto João Paulo II"], nota:"10 min · devolver el coche lleno (gasolineras a 5 min)"},
+  spots:[
+    {n:"Aeroporto João Paulo II (PDL)", wiki:"Aeroporto João Paulo II", q:"Aeroporto João Paulo II", time:"✈️ mañana",
+     d:"Devolver el coche con el depósito lleno (hay gasolineras a 5 min) y facturar con calma: está tan cerca del centro que no hay excusa para madrugar de más. Última piña del aeropuerto si quedó hueco en la maleta."},
+    {n:"Desayuno exprés: Louvre Michaelense", q:"Louvre Michaelense, Ponta Delgada", time:"☕ si hay hueco", cam:["pdl"],
+     d:"Antigua mercería de 1900 convertida en café bonito: tostas, bolos lêvedos y un último café mirando la calle. El cierre dulce si el horario lo permite."}
+  ]
+}
+];
+
+/* ================= RENDER ================= */
+function camChips(keys){
+  return (keys||[]).map(k=>{
+    const c = CAMS[k]; if(!c) return "";
+    return `<a class="camchip" target="_blank" rel="noopener" href="${c.url}">🎥 ${c.n}</a>`;
+  }).join("");
+}
+function cardHTML(s){
+  const badges = [];
+  if(s.time) badges.push(`<span class="badge time">${s.time}</span>`);
+  (s.badges||[]).forEach(b=>badges.push(`<span class="badge ${b.c||""}">${b.t}</span>`));
+  if(s.star) badges.push(`<span class="badge star">⭐ imprescindible</span>`);
+  const acts = [];
+  if(s.q){
+    acts.push(`<a class="gbtn map" target="_blank" rel="noopener" href="${M(s.q)}">📍 Maps</a>`);
+    acts.push(`<a class="gbtn dir" target="_blank" rel="noopener" href="${DIR(s.q)}">🧭 Cómo llegar</a>`);
+    acts.push(`<a class="gbtn" target="_blank" rel="noopener" href="${F((s.foto||s.q||s.n)+" Açores")}">📷 Fotos</a>`);
+  }
+  (s.cam||[]).forEach(k=>{
+    const c=CAMS[k]; if(c) acts.push(`<a class="gbtn cam" target="_blank" rel="noopener" href="${c.url}">🎥 ${c.n}</a>`);
+  });
+  (s.links||[]).forEach(l=>acts.push(`<a class="gbtn ext" target="_blank" rel="noopener" href="${l[1]}">${l[0]}</a>`));
+  return `<article class="card ${s.star?"star":""}">
+    ${s.wiki?`<img class="spotimg" alt="" loading="lazy" referrerpolicy="no-referrer" data-wiki="${s.wiki}">`:""}
+    <h3>${s.n}</h3>
+    ${badges.length?`<div class="meta">${badges.join("")}</div>`:""}
+    <p>${s.d}</p>
+    <div class="acciones">${acts.join("")}</div>
+  </article>`;
+}
+function diaHTML(d){
+  const stops = d.ruta ? d.ruta.stops.map(s=>{
+      const short = s.split(",")[0].replace("Miradouro d","Mir. d").replace("Parque Natural da ","P.N. ");
+      return `<span class="st">${short}</span>`;
+    }).join(`<span class="ln" aria-hidden="true"></span>`) : "";
+  return `<section class="bloque" id="${d.id}">
+    <div class="sec-head"><span class="blaze" aria-hidden="true"></span>
+      <h2>${d.num} · ${d.titulo}</h2><span class="fecha">${d.fecha}</span></div>
+    <p class="tema">${d.tema}</p>
+    <img class="heroimg" alt="" loading="lazy" referrerpolicy="no-referrer" data-wiki="${d.wiki||""}">
+    <div class="credit">Foto: Wikipedia / Wikimedia Commons</div>
+    <div class="decide">
+      <div class="tit">🌫️ Antes de salir · cámara de decisión</div>
+      <div class="cams">${camChips(d.cams)}</div>
+      <div class="planb"><b>Plan B:</b> ${d.planb}</div>
+    </div>
+    ${d.ruta?`<div class="rutabar">
+      <div class="lbl">Ruta del día · ${d.ruta.nota||""}</div>
+      <div class="stops">${stops}</div>
+      <a class="gbtn map" target="_blank" rel="noopener" href="${RUTA(d.ruta.stops,d.ruta.mode)}">🗺️ Abrir ruta completa en Google Maps</a>
+    </div>`:""}
+    <div class="cards">${d.spots.map(cardHTML).join("")}</div>
+  </section>`;
+}
+
+document.getElementById("app").innerHTML = DIAS.map(diaHTML).join("");
+
+/* Nav */
+const nav = document.getElementById("nav");
+nav.innerHTML = DIAS.map(d=>`<a href="#${d.id}"><span class="b" aria-hidden="true"></span>${d.chip}</a>`).join("")
+  + `<a href="#cams">🎥 Cámaras</a><a href="#tips">🎒 Práctico</a>`;
+
+/* Dashboard de cámaras */
+(function(){
+  const dash = document.getElementById("camdash");
+  const grupo = (g,titulo)=>{
+    const items = Object.values(CAMS).filter(c=>c.g===g).map(c=>
+      `<div class="camcard"><div class="nm">${c.n}</div><div class="zona">${c.zona}</div>
+       <div class="dia">→ ${c.dia}</div>
+       <a class="ver" target="_blank" rel="noopener" href="${c.url}">🎥 Ver en directo</a></div>`).join("");
+    return `<div class="subgrupo">${titulo}</div><div class="camgrid">${items}</div>`;
+  };
+  dash.innerHTML = grupo("m","🌫️ Montaña y niebla · las que deciden el día")
+                 + grupo("c","🌊 Costa y baño · dónde está el buen mar");
+})();
+
+/* Resaltar día activo en la nav */
+(function(){
+  if(!("IntersectionObserver" in window)) return;
+  const links = [...nav.querySelectorAll("a")];
+  const map = {}; links.forEach(a=>map[a.getAttribute("href").slice(1)] = a);
+  const obs = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(a=>a.classList.remove("on"));
+        const a = map[e.target.id]; if(a){a.classList.add("on");
+          a.scrollIntoView({block:"nearest",inline:"center",behavior:"smooth"});}
+      }
+    });
+  },{rootMargin:"-15% 0px -70% 0px"});
+  document.querySelectorAll("section.bloque").forEach(s=>obs.observe(s));
+})();
+
+/* Fotos automáticas desde Wikipedia (si falla, se ocultan solas) */
+const cacheFotos = {};
+function buscaFoto(titulo){
+  if(cacheFotos[titulo]) return cacheFotos[titulo];
+  cacheFotos[titulo] = (async()=>{
+    for(const lang of ["pt","es","en"]){
+      try{
+        const r = await fetch("https://"+lang+".wikipedia.org/api/rest_v1/page/summary/"+encodeURIComponent(titulo));
+        if(!r.ok) continue;
+        const j = await r.json();
+        const src = j.thumbnail && j.thumbnail.source;
+        if(src) return src;
+      }catch(e){ /* sin red o CORS: seguimos sin foto */ }
+    }
+    return null;
+  })();
+  return cacheFotos[titulo];
+}
+function urlFoto(base, img){
+  const ancho = img.classList.contains("heroimg") ? "1100px-" : "700px-";
+  return base.replace(/\/(\d+)px-/, "/"+ancho);
+}
+document.querySelectorAll("img[data-wiki]").forEach(async img=>{
+  const t = img.dataset.wiki; if(!t) return;
+  const base = await buscaFoto(t); if(!base) return;
+  img.onload = ()=>{ img.classList.add("ok");
+    const c = img.nextElementSibling;
+    if(c && c.classList && c.classList.contains("credit")) c.classList.add("ok"); };
+  img.src = urlFoto(base, img);
+});
+
+/* 💾 Versión offline: incrusta todas las fotos y descarga el archivo */
+async function aDataURL(url){
+  const r = await fetch(url); if(!r.ok) throw new Error("http "+r.status);
+  const b = await r.blob();
+  return await new Promise((res,rej)=>{ const f=new FileReader();
+    f.onload=()=>res(f.result); f.onerror=rej; f.readAsDataURL(b); });
+}
+(function(){
+  const btn = document.getElementById("btnOffline"); if(!btn) return;
+  btn.addEventListener("click", async ()=>{
+    btn.disabled = true; const txt = btn.textContent;
+    const vivos = [...document.querySelectorAll("img[data-wiki]")];
+    const uris = []; let hechos = 0;
+    for(const img of vivos){
+      let uri = null;
+      try{
+        if(!img.dataset.wiki) throw new Error("sin título");
+        let src = img.getAttribute("src");
+        if(!src){ const base = await buscaFoto(img.dataset.wiki);
+          if(base) src = urlFoto(base, img); }
+        if(src) uri = await aDataURL(src);
+      }catch(e){}
+      uris.push(uri); hechos++;
+      btn.textContent = "⏳ Incrustando fotos "+hechos+"/"+vivos.length+"…";
+    }
+    const clon = document.documentElement.cloneNode(true);
+    clon.querySelectorAll("script").forEach(x=>x.remove());
+    const barra = clon.querySelector(".offbar"); if(barra) barra.remove();
+    [...clon.querySelectorAll("img[data-wiki]")].forEach((ci,i)=>{
+      const uri = uris[i];
+      const cr = ci.nextElementSibling;
+      if(!uri){ if(cr && cr.classList && cr.classList.contains("credit")) cr.remove(); ci.remove(); return; }
+      ci.setAttribute("src", uri); ci.classList.add("ok");
+      ci.removeAttribute("data-wiki"); ci.removeAttribute("loading");
+      if(cr && cr.classList && cr.classList.contains("credit")) cr.classList.add("ok");
+    });
+    const html = "<!DOCTYPE html>\n" + clon.outerHTML;
+    const blob = new Blob([html], {type:"text/html;charset=utf-8"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "Itinerario_Azores_SaoMiguel_OFFLINE.html";
+    document.body.appendChild(a); a.click(); a.remove();
+    btn.textContent = "✅ Guardada en tus descargas";
+    setTimeout(()=>{ btn.textContent = txt; btn.disabled = false; }, 5000);
+  });
+})();
+
+/* PWA: registrar service worker solo cuando se sirve por http(s) */
+try{
+  if(("serviceWorker" in navigator) && /^https?:$/.test(location.protocol)){
+    navigator.serviceWorker.register("./sw.js");
+  }
+}catch(e){}
+</script>
+</body>
+</html>
